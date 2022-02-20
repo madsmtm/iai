@@ -147,7 +147,7 @@ fn run_benches(
         .arg("--compress-pos=no")
         .arg("--collect-atstart=no");
 
-    for (name, _func) in benches.iter() {
+    for (name, _func) in benches.iter().filter(|(name, _func)| *name != "warmup") {
         // cmd.arg(format!("--zero-before=__iai_bench_{name}"));
         // cmd.arg(format!("--dump-after=__iai_bench_{name}"));
         cmd.arg(format!("--toggle-collect=__iai_bench_{name}"));
@@ -292,7 +292,7 @@ pub fn runner(benches: &[&(&'static str, fn())]) {
 
     let (stats, old_stats) = run_benches(&benches, &executable, allow_aslr);
 
-    for (name, _func) in benches.iter() {
+    for (name, _func) in benches.iter().filter(|(name, _func)| *name != "warmup") {
         println!("{}", name);
         let stats = stats.get(*name).unwrap();
         let old_stats = old_stats.get(*name);
