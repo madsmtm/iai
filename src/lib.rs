@@ -134,6 +134,8 @@ fn run_benches(
     };
 
     let cmd = cmd
+        .arg("--verbose")
+        // .arg("--read-inline-info=yes")
         .arg("--tool=callgrind")
         // Set some reasonable cache sizes. The exact sizes matter less than having fixed sizes,
         // since otherwise callgrind would take them from the CPU and make benchmark runs
