@@ -156,8 +156,8 @@ fn run_benches(
     let status = cmd
         .arg(executable)
         .arg("--iai-run")
-        .stdout(Stdio::null())
-        .stderr(Stdio::null())
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit())
         .status()
         .expect("Failed to run benchmark in callgrind");
 
